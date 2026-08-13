@@ -1,0 +1,15 @@
+[package]
+name = "arandu-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+arandu-core = { path = "../../crates/arandu-core" }
+arandu-model = { path = "../../crates/arandu-model" }
+arandu-navigation = { path = "../../crates/arandu-navigation" }
+arandu-confluence = { path = "../../crates/arandu-confluence" }
+
+[lints]
+workspace = true

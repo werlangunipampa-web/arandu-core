@@ -1,0 +1,26 @@
+@prefix arandu: <https://github.com/werlangunipampa-web/arandu-core/ontology/navigation#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+arandu:AranduSystem a rdfs:Class .
+arandu:River a rdfs:Class .
+arandu:MemoryRiver a rdfs:Class ; rdfs:subClassOf arandu:River .
+arandu:OpenRiver a rdfs:Class ; rdfs:subClassOf arandu:River .
+arandu:FrequentRiver a rdfs:Class ; rdfs:subClassOf arandu:River .
+arandu:Confluence a rdfs:Class .
+arandu:ApplicationNode a rdfs:Class .
+arandu:Connector a rdfs:Class .
+arandu:MemoryConnector a rdfs:Class ; rdfs:subClassOf arandu:Connector .
+arandu:OpenConnector a rdfs:Class ; rdfs:subClassOf arandu:Connector .
+arandu:FrequentConnector a rdfs:Class ; rdfs:subClassOf arandu:Connector .
+arandu:NavigationIntent a rdfs:Class .
+arandu:InputModality a rdfs:Class .
+arandu:InteractionProfile a rdfs:Class .
+arandu:UsageObservation a rdfs:Class .
+arandu:FrequencyStatistic a rdfs:Class .
+
+arandu:containsNode a rdf:Property ; rdfs:domain arandu:River ; rdfs:range arandu:ApplicationNode .
+arandu:joinsRiver a rdf:Property ; rdfs:domain arandu:Confluence ; rdfs:range arandu:River .
+arandu:producesIntent a rdf:Property ; rdfs:domain arandu:InputModality ; rdfs:range arandu:NavigationIntent .
+arandu:mapsSignalToIntent a rdf:Property ; rdfs:domain arandu:InteractionProfile ; rdfs:range arandu:NavigationIntent .
+arandu:updatesStatistic a rdf:Property ; rdfs:domain arandu:UsageObservation ; rdfs:range arandu:FrequencyStatistic .

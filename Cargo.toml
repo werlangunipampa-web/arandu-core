@@ -1,0 +1,26 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/arandu-model",
+  "crates/arandu-confluence",
+  "crates/arandu-geometry",
+  "crates/arandu-navigation",
+  "crates/arandu-platform-api",
+  "crates/arandu-input-api",
+  "crates/arandu-core",
+  "apps/arandu-cli",
+]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+authors = ["ARANDU LAB"]
+rust-version = "1.91"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"
+pedantic = "warn"

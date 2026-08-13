@@ -1,0 +1,16 @@
+[package]
+name = "arandu-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+arandu-model = { path = "../arandu-model" }
+arandu-navigation = { path = "../arandu-navigation" }
+arandu-platform-api = { path = "../arandu-platform-api" }
+arandu-confluence = { path = "../arandu-confluence" }
+arandu-geometry = { path = "../arandu-geometry" }
+
+[lints]
+workspace = true

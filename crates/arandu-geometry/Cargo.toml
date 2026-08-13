@@ -1,0 +1,12 @@
+[package]
+name = "arandu-geometry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+arandu-model = { path = "../arandu-model" }
+
+[lints]
+workspace = true
