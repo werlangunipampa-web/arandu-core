@@ -8,6 +8,7 @@ use arandu_model::{
 };
 use arandu_navigation::{AranduEvent, NavigationIntent, NavigationState, UsageStatistics};
 use arandu_platform_api::{PlatformAdapter, PlatformError};
+use arandu_render_api::{RenderNodeInput, RenderScene, SceneBuilder};
 
 #[derive(Debug)]
 pub struct AranduCore {
@@ -19,6 +20,7 @@ pub struct AranduCore {
     confluence: Confluence,
     confluence_controller: ConfluenceController,
     geometry: GeometryEngine,
+    scene_builder: SceneBuilder,
     frequent_limit: usize,
 }
 
@@ -45,6 +47,7 @@ impl AranduCore {
             confluence: Confluence::default(),
             confluence_controller: ConfluenceController::default(),
             geometry: GeometryEngine::default(),
+            scene_builder: SceneBuilder::default(),
             frequent_limit: river_capacity,
         }
     }
@@ -86,6 +89,38 @@ impl AranduCore {
                 open: self.river(RiverKind::Open).nodes.len(),
                 frequent: self.river(RiverKind::Frequent).nodes.len(),
             },
+        )
+    }
+
+    /// Builds a platform-neutral visual scene for the current ARANDU state.
+    #[must_use]
+    pub fn render_scene(&self, viewport: Viewport, requested_seed: Point) -> RenderScene {
+        let layout = self.adaptive_layout(viewport, requested_seed);
+        let mut inputs = Vec::new();
+
+        for kind in RiverKind::ALL {
+            let river = self.river(kind);
+            for (index, id) in river.nodes.iter().enumerate() {
+                if let Some(app) = self.application(id) {
+                    inputs.push(RenderNodeInput {
+                        id: app.id.clone(),
+                        name: app.name.clone(),
+                        river: kind,
+                        arandu_symbol: app.visual.arandu_symbol.clone(),
+                        original_icon_reference: app.visual.original_icon_reference.clone(),
+                        accent: app.visual.accent,
+                        focused: app.is_focused,
+                        selected: river.selected_index == Some(index),
+                    });
+                }
+            }
+        }
+
+        self.scene_builder.build(
+            &layout,
+            self.confluence_state(),
+            self.confluence_reveal_factor(),
+            &inputs,
         )
     }
 
@@ -310,5 +345,26 @@ mod tests {
                     && point.y <= viewport.height - 44.0
             }));
         }
+    }
+    #[test]
+    fn core_renderer_contract_tracks_confluence_state() {
+        let mut core = AranduCore::new(5);
+        core.register_application(app("firefox"));
+        let _ = core.observe_launch(&ApplicationId::new("firefox"));
+        let _ = core.observe_focus(&ApplicationId::new("firefox"));
+
+        let viewport = Viewport::new(1280.0, 720.0);
+        let seed = Point::new(640.0, 360.0);
+
+        let collapsed = core.render_scene(viewport, seed);
+        assert_eq!(collapsed.confluence_state, ConfluenceState::Collapsed);
+        assert!(collapsed.reveal_factor.abs() < f32::EPSILON);
+
+        let _ = core
+            .handle_confluence_signal(ConfluenceSignal::HoverEntered, Duration::from_millis(10));
+        let expanded = core.render_scene(viewport, seed);
+        assert_eq!(expanded.confluence_state, ConfluenceState::Expanded);
+        assert!((expanded.reveal_factor - 1.0).abs() < f32::EPSILON);
+        assert!(!expanded.nodes.is_empty());
     }
 }

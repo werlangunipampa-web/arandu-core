@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "arandu-cli"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
  "arandu-confluence",
  "arandu-core",
@@ -14,29 +14,30 @@ dependencies = [
 
 [[package]]
 name = "arandu-confluence"
-version = "0.3.0"
+version = "0.4.2"
 
 [[package]]
 name = "arandu-core"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
  "arandu-confluence",
  "arandu-geometry",
  "arandu-model",
  "arandu-navigation",
  "arandu-platform-api",
+ "arandu-render-api",
 ]
 
 [[package]]
 name = "arandu-geometry"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
  "arandu-model",
 ]
 
 [[package]]
 name = "arandu-input-api"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
  "arandu-model",
  "arandu-navigation",
@@ -44,18 +45,27 @@ dependencies = [
 
 [[package]]
 name = "arandu-model"
-version = "0.3.0"
+version = "0.4.2"
 
 [[package]]
 name = "arandu-navigation"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
  "arandu-model",
 ]
 
 [[package]]
 name = "arandu-platform-api"
-version = "0.3.0"
+version = "0.4.2"
 dependencies = [
+ "arandu-model",
+]
+
+[[package]]
+name = "arandu-render-api"
+version = "0.4.2"
+dependencies = [
+ "arandu-confluence",
+ "arandu-geometry",
  "arandu-model",
 ]

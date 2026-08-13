@@ -4,6 +4,7 @@ members = [
   "crates/arandu-model",
   "crates/arandu-confluence",
   "crates/arandu-geometry",
+  "crates/arandu-render-api",
   "crates/arandu-navigation",
   "crates/arandu-platform-api",
   "crates/arandu-input-api",
@@ -12,7 +13,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.3.0"
+version = "0.4.2"
 edition = "2021"
 license = "GPL-3.0-or-later"
 authors = ["ARANDU LAB"]

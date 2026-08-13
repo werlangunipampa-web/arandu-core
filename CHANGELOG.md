@@ -45,3 +45,23 @@
 - Clamping da Semente e dos nós em margem segura.
 - Integração da geometria ao `AranduCore` usando contagens reais dos três rios.
 - Seis testes do motor geométrico e um teste de integração no Core.
+
+## 0.4.0
+- Renderer Contract independente de plataforma.
+- Novo crate `arandu-render-api`.
+- Cena abstrata com Semente, nós, conectores e rótulos.
+- Emergência progressiva dos rios a partir da Semente.
+- Identidade ARANDU principal e referência ao ícone original preservada.
+- Integração `AranduCore::render_scene`.
+
+## 0.4.1
+- Corrige lints Clippy no `arandu-render-api`.
+- Substitui range loop por iterador enumerado.
+- Evita comparação exata de ponto flutuante em teste.
+- Usa `assert_ne!` na verificação de posição intermediária.
+- Sem mudança de comportamento do Renderer Contract.
+
+## 0.4.2
+- Corrige comparações exatas de ponto flutuante no teste de integração do Renderer Contract.
+- Mantém o comportamento funcional da v0.4.1.
+- Fecha o Clippy gate com tolerância por `f32::EPSILON`.
