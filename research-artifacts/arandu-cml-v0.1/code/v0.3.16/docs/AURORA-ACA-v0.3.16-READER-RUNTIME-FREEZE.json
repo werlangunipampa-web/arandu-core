@@ -1,0 +1,30 @@
+{
+  "version": "v0.3.16-dev",
+  "status": "DEV_READER_RUNTIME_FROZEN_BEFORE_FRESH_PROBE",
+  "scope": "EPISTEMIC_AMBIGUITY_EXTRACTION_CONFIDENCE_SEPARATION",
+  "scientific_claim": "NONE_DEV_ENGINEERING_ONLY",
+  "files": {
+    "src/aurora_aca_m1b/reader_provider.py": "f7eeaa14ce4cdec54814e246ab2de4100461ee26b9cd74f3028b91b9e2a63087",
+    "src/aurora_aca_m1b/reader_schema.py": "ce85039391b792e80ad81ce00c83d39139d190b74427a5be94a020c1df100225",
+    "src/aurora_aca_m1b/reader_validator.py": "e87604b20701b43c0b7d39f2ef97fb7102ef30fcca3638d5d326b6cfe46c8b4b"
+  },
+  "reader_boundary_hash": "755959f4d81a74894713606812d247b07ab402a27eedce600c421e5b38917fb5",
+  "previous_snapshot_root": "b478ea0dde06c782f203f14569945c6214b4e23e6f00cc97313191feb2cc1ff0",
+  "previous_v0315_result": "FAIL_PRESERVED",
+  "previous_v0315_failure": "AMBIGUITY_CONFIDENCE_CAP",
+  "confidence_semantics": "EXTRACTION_CONFIDENCE_NOT_SOURCE_TRUTH_CONFIDENCE",
+  "ambiguity_semantics": "SOURCE_EPISTEMIC_AMBIGUITY",
+  "old_engineering_gate_preserved": {
+    "reader_frame_coverage_min": 0.85,
+    "context_qualifier_misses_max": 0,
+    "reader_rejects_max": 0
+  },
+  "router_diagnostic_gate_preserved": {
+    "semantic_router_coverage_min": 0.85
+  },
+  "gold_access_added": false,
+  "eca_state_access_added": false,
+  "literal_rescue_changed": false,
+  "provider_changed": false,
+  "schema_changed": false
+}
