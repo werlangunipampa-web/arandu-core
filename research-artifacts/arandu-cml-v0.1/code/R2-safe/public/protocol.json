@@ -1,0 +1,24 @@
+{
+  "protocol_id": "AURORA-ACA-M1B-R2-PREREG-0001",
+  "status": "FROZEN_CANDIDATE",
+  "purpose": "Blind generalization test after v0.3.4 engineering success.",
+  "learner_blind_to_private_gold": true,
+  "architecture_note": "Core Reader/MAS/ECT logic inherited from v0.3.4. A preregistered decontamination refactor removes corpus-specific context-token hardcoding; no R2 outcome was observed before freeze.",
+  "nonce_vocabulary": ["NAVI","DORU","SEMI","PAV","TAVEN","ORIK","ZELU","J1","J2","J3"],
+  "forbidden_legacy_nonce_vocabulary": ["LUMI","KADOR","VESI","RAN","TEKAL","MORI","ELUN","K1","K2","K3"],
+  "design": {
+    "units": 24,
+    "mixed_surface_frames": {"rescue_eligible_planned": 14,"paraphrase_planned": 10},
+    "no_posthoc_edits": true
+  },
+  "thresholds": {
+    "RVR": 0.9,"GCP": 0.95,"EP": 0.9,"ER": 0.85,"TFA": 0.8,"SOA": 0.85,"FAR": 0.0,"MAR": 0.2,
+    "SemanticCoverage": 0.85,"PolarityViolationRate": 0.0,"ContextCollapseRate": 0.0
+  },
+  "causal_tests": {
+    "future_task": "FUTURE-R2-01",
+    "expected_full_less_than_baseline": true,
+    "ablation_remove": "C-TAVEN",
+    "expected_ablated_greater_than_full": true
+  }
+}
