@@ -1,0 +1,13 @@
+# Never publish future blind-evaluation assets from this artifact tree
+private_eval/
+**/private_eval/
+*private_gold*
+*PRIVATE_GOLD*
+R5*/
+R5-R*/
+future_blind*/
+secrets/
+.env
+.env.*
+*.key
+*.pem

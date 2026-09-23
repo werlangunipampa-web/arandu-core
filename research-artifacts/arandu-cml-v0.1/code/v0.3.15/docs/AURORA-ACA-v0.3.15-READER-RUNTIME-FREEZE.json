@@ -1,0 +1,29 @@
+{
+  "version": "v0.3.15-dev",
+  "status": "DEV_READER_RUNTIME_FROZEN_BEFORE_FRESH_PROBE",
+  "scope": "TWO_STAGE_SEMANTIC_FRAME_ROUTER_PLUS_STRUCTURED_EXTRACTION",
+  "scientific_claim": "NONE_DEV_ENGINEERING_ONLY",
+  "files": {
+    "src/aurora_aca_m1b/reader_provider.py": "f7eeaa14ce4cdec54814e246ab2de4100461ee26b9cd74f3028b91b9e2a63087",
+    "src/aurora_aca_m1b/reader_schema.py": "ce85039391b792e80ad81ce00c83d39139d190b74427a5be94a020c1df100225",
+    "src/aurora_aca_m1b/reader_validator.py": "1c56c9b5d92590fae8f55dbc9f5d09cbe1d6abcb97cfb28fa52419b3191eb824"
+  },
+  "prompt_hash": "f2356c71be8b675dd9c8ea2c85c219a0ac0f36e828ffee80fc660d0f52b57d30",
+  "format_schema_hash": "de16ab7aadc6ab5741d7b232599bc3af38d980505eee758d6c0a830058506fc8",
+  "frame_router_schema_hash": "620f2f388cba344220139e91e627a150ae09fd321d00f1e8b1de211a65c3070a",
+  "frame_router_prompt_hash": "f804598f539b240259110463e5af55052b942aa01218efaa304a4b22ba43f2f3",
+  "reader_contract_hash": "afea7024611d765419745844ddd3f0ac0527e0f204b0ca09b5ec4248814d7eda",
+  "previous_snapshot_root": "d38f38c55ff0038b539a25f1733d6d628626845f7247a41d56c8045982e1db46",
+  "old_engineering_gate_preserved": {
+    "reader_frame_coverage_min": 0.85,
+    "context_qualifier_misses_max": 0,
+    "reader_rejects_max": 0
+  },
+  "new_router_diagnostic_gate": {
+    "semantic_router_coverage_min": 0.85
+  },
+  "gold_access_added": false,
+  "eca_state_access_added": false,
+  "literal_rescue_access_added": false,
+  "previous_probe_vocabulary_in_router_prompt": false
+}
