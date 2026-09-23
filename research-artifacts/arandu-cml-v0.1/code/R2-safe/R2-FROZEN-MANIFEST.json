@@ -1,0 +1,25 @@
+{
+  "manifest_id": "AURORA-ACA-M1B-R2-FROZEN-MANIFEST-0001",
+  "version": "0.3.5-R2-PREREG",
+  "sha256": {
+    "experiments/m1b_r2/public/corpus.json": "513c4bab377c0d0cbe21a626507b34d01ad6a304d1271306a5fcd01929dd0fba",
+    "experiments/m1b_r2/public/protocol.json": "2a302d350d97ef4381be70f9e6a6e8e9e3c94f5e9be7860464c18e5227c1923c",
+    "experiments/m1b_r2/private_eval/gold.json": "f02b50446356603807c067a01ce3f829a0f031e936fc4a68296efe9bafc9f53f",
+    "experiments/m1b_r2/private_eval/future_units/future.json": "46704b290f51c7ac5a766ca50bd04f09e52f32b1b1809bb839c9beeb582f34cd",
+    "src/aurora_aca_m1b/reader_provider.py": "7464ee81a1678093a3a16b78001e3f4a274a37343121e2edc85a0912c6624e65",
+    "src/aurora_aca_m1b/reader_schema.py": "f631fa9d936a3ceada60056c62b798beb154a7bd152d34284778c6c4afa01273",
+    "src/aurora_aca_m1b/reader_validator.py": "af5da726889b484fc1d52bbd6ba4bf27b76d3bf615f35480138c13eb1a3fcb0a",
+    "src/aurora_aca_m1b/candidate_builder.py": "d385db9593fb94efe6309ff6663818c44fd9792be0150a51487c5869a36eb87b",
+    "src/aurora_aca_m1b/literal_rescue.py": "c11b421c95ac08ca2d0b079a728daee0af18a509a3270b021bd79a1ecfb20aca",
+    "src/aurora_aca_m1b/retriever.py": "f1ef56bd4cd00bd765fa7c40f978678580df0a9bd27ebaa9199c0ae97defdc23",
+    "src/aurora_aca_m1b/proposer.py": "3fe408431014b2eb0a2b1a2b0e2562b19a716647779fe26a9ddedb0cc25d8555",
+    "src/aurora_aca_m1b/engine.py": "aebb7abccc8866a631c1c80da1e4fe7af68fc3b94d8857195551158277229a6b",
+    "src/aurora_aca_m1b/evaluator.py": "15ac85f4fbb7d1eeb0b1e0babc8fb822d3d0eb2960788d9a1c30fc98f03c0de2",
+    "src/aurora_aca_m1b/experiment.py": "90562465ea23a39dd13e5b713c59c012ad101d320f3dff09fe936760fbb16fbe",
+    "scripts/run_r2.py": "b47e0c1b921366a12f9c19465340d188188e76ddd63bd139d4bf2b28529f1697"
+  },
+  "forbidden_legacy_nonce_vocabulary": [
+    "LUMI","KADOR","VESI","RAN","TEKAL","MORI","ELUN","K1","K2","K3"
+  ],
+  "note": "Hashes fixed before first R2 execution. Any mismatch invalidates the preregistered run."
+}
