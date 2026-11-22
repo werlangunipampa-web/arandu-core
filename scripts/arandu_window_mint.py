@@ -7,6 +7,7 @@ Requires Python 3 with tkinter plus Cargo/Rust in the checkout.
 """
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 import tkinter as tk
@@ -162,7 +163,15 @@ def main() -> int:
     canvas.bind("<Configure>", redraw)
     root.protocol("WM_DELETE_WINDOW", close)
     redraw()
+    if os.environ.get("ARANDU_GUI_SMOKE") == "1":
+        # Explicit opt-in automated GUI exercise, with no global OS hooks.
+        root.after(150, lambda: send("2"))
+        root.after(300, lambda: send("3"))
+        root.after(450, lambda: send("escape"))
+        root.after(600, close)
     root.mainloop()
+    if os.environ.get("ARANDU_GUI_SMOKE") == "1":
+        print("ARANDU_GUI_SMOKE_OK", flush=True)
     return 0
 
 
