@@ -48,3 +48,6 @@ jobs:
 
       - name: Validate Linux Mint window adapter syntax
         run: python3 -m py_compile scripts/arandu_window_mint.py
+
+      - name: Validate A1.6 Rust window protocol end-to-end
+        run: python3 scripts/benchmark_window_protocol.py --build --frames 20
