@@ -54,16 +54,16 @@ pub fn render_svg(scene: &arandu_render_api::RenderScene, width: u32, height: u3
     let mut out = format!(
         "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\" role=\"img\" aria-label=\"ARANDU Confluência, prévia sintética\">\n"
     );
-    out.push_str("<rect width=\"100%\" height=\"100%\" fill=\"#09171a\"/>\n");
-    out.push_str("<text x=\"42\" y=\"68\" fill=\"#dceee6\" font-size=\"25\" font-family=\"sans-serif\">ARANDU • Confluência</text>\n");
-    out.push_str("<text x=\"42\" y=\"96\" fill=\"#8daaa2\" font-size=\"13\" font-family=\"sans-serif\">Protótipo A1 • dados sintéticos • nenhum sistema alterado</text>\n");
+    out.push_str("<rect width=\"100%\" height=\"100%\" fill=\"#0b110e\"/>\n");
+    out.push_str("<text x=\"42\" y=\"68\" fill=\"#f5ead6\" font-size=\"25\" font-family=\"sans-serif\">ARANDU • Confluência</text>\n");
+    out.push_str("<text x=\"42\" y=\"96\" fill=\"#b9a77e\" font-size=\"13\" font-family=\"sans-serif\">Protótipo A1 • dados sintéticos • nenhum sistema alterado</text>\n");
     for connector in &scene.connectors {
         if connector.opacity <= 0.0 {
             continue;
         }
         let _ = writeln!(
             out,
-            "<line x1=\"{:.1}\" y1=\"{:.1}\" x2=\"{:.1}\" y2=\"{:.1}\" stroke=\"#60aa91\" stroke-opacity=\"{:.2}\" stroke-width=\"2\"/>",
+            "<line x1=\"{:.1}\" y1=\"{:.1}\" x2=\"{:.1}\" y2=\"{:.1}\" stroke=\"#8b9e7a\" stroke-opacity=\"{:.2}\" stroke-width=\"2\"/>",
             connector.from.x,
             connector.from.y,
             connector.to.x,
@@ -75,10 +75,10 @@ pub fn render_svg(scene: &arandu_render_api::RenderScene, width: u32, height: u3
         if node.opacity <= 0.0 {
             continue;
         }
-        let stroke = if node.focused { "#e9d18b" } else { "#94c5b0" };
+        let stroke = if node.focused { "#e6d5a6" } else { "#a7864e" };
         let _ = writeln!(
             out,
-            "<circle cx=\"{:.1}\" cy=\"{:.1}\" r=\"{:.1}\" fill=\"#193a37\" stroke=\"{stroke}\" stroke-width=\"2\" opacity=\"{:.2}\"/>",
+            "<circle cx=\"{:.1}\" cy=\"{:.1}\" r=\"{:.1}\" fill=\"#20231d\" stroke=\"{stroke}\" stroke-width=\"2\" opacity=\"{:.2}\"/>",
             node.center.x,
             node.center.y,
             node.radius * node.scale,
@@ -86,19 +86,37 @@ pub fn render_svg(scene: &arandu_render_api::RenderScene, width: u32, height: u3
         );
         let _ = writeln!(
             out,
-            "<text x=\"{:.1}\" y=\"{:.1}\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#f1f8f5\" opacity=\"{:.2}\">{}</text>",
+            "<text x=\"{:.1}\" y=\"{:.1}\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#f5ead6\" opacity=\"{:.2}\">{}</text>",
             node.center.x,
             node.center.y + node.radius * node.scale + 18.0,
             node.opacity,
             escape_xml(&node.name)
         );
     }
+    // A1.10 — lightweight concentric rings inspired by the existing GNOME
+    // ARANDU Semente: gold outer rim, dark face, contrasting inner relief.
+    // Keep every primitive within the original Tk SVG subset.
+    for (factor, fill, stroke, width) in [
+        (1.35_f32, "#0b110e", "#a7864e", 1.0_f32),
+        (1.22, "#20231d", "#c6a66e", 2.0),
+        (1.08, "#252824", "#f5dd98", 2.0),
+        (0.92, "#101411", "#876735", 1.5),
+    ] {
+        let _ = writeln!(
+            out,
+            "<circle cx=\"{:.1}\" cy=\"{:.1}\" r=\"{:.1}\" fill=\"{fill}\" stroke=\"{stroke}\" stroke-width=\"{width}\" opacity=\"{:.2}\"/>",
+            scene.seed.center.x,
+            scene.seed.center.y,
+            scene.seed.radius * scene.seed.scale * factor,
+            scene.seed.opacity
+        );
+    }
     let _ = writeln!(
         out,
-        "<circle cx=\"{:.1}\" cy=\"{:.1}\" r=\"{:.1}\" fill=\"#90d9b0\" stroke=\"#e4eeb5\" stroke-width=\"3\" opacity=\"{:.2}\"/>",
+        "<circle cx=\"{:.1}\" cy=\"{:.1}\" r=\"{:.1}\" fill=\"#c6a66e\" stroke=\"#f7e6ae\" stroke-width=\"1\" opacity=\"{:.2}\"/>",
         scene.seed.center.x,
         scene.seed.center.y,
-        scene.seed.radius * scene.seed.scale,
+        scene.seed.radius * scene.seed.scale * 0.18,
         scene.seed.opacity
     );
     for label in &scene.labels {
@@ -109,7 +127,7 @@ pub fn render_svg(scene: &arandu_render_api::RenderScene, width: u32, height: u3
         };
         let _ = writeln!(
             out,
-            "<text x=\"{:.1}\" y=\"{:.1}\" fill=\"#b6dcbd\" font-family=\"sans-serif\" font-size=\"14\" opacity=\"{:.2}\">{label_text}</text>",
+            "<text x=\"{:.1}\" y=\"{:.1}\" fill=\"#d6bb79\" font-family=\"sans-serif\" font-size=\"14\" opacity=\"{:.2}\">{label_text}</text>",
             label.anchor.x + 30.0,
             label.anchor.y - 12.0,
             label.opacity
