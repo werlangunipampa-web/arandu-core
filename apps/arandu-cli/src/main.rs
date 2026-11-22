@@ -1,3 +1,4 @@
+mod html_preview;
 mod svg_preview;
 
 use std::time::Duration;
@@ -8,6 +9,10 @@ use arandu_model::{ApplicationId, ApplicationNode, RiverKind};
 use arandu_navigation::NavigationIntent;
 
 fn main() {
+    if std::env::args().any(|arg| arg == "--preview-html") {
+        print!("{}", html_preview::preview());
+        return;
+    }
     if std::env::args().any(|arg| arg == "--preview-svg") {
         print!("{}", svg_preview::preview());
         return;
