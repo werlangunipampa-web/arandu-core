@@ -275,3 +275,6 @@ pub mod ontology_access;
 
 /// A0.8 experimental attributed semantic graph (synthetic data only).
 pub mod semantic_graph;
+
+/// A0.9 synthetic, read-only projection for ECA research.
+pub mod eca_projection;
