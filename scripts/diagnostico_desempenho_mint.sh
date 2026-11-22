@@ -2,7 +2,7 @@
 # Diagnóstico A1.9: leitura apenas; sem sudo, sem alteração de serviços.
 set -Eeuo pipefail
 export LC_ALL=C
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cd "${ARANDU_ROOT:-$(dirname "${BASH_SOURCE[0]}")/..}"
 echo "========== ARANDU / Linux Mint — diagnóstico somente leitura =========="
 date -Is
 echo
