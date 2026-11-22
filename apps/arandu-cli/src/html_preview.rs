@@ -7,6 +7,7 @@ use arandu_core::AranduCore;
 use arandu_geometry::{Point, Viewport};
 use arandu_model::{ApplicationId, ApplicationNode};
 use std::time::Duration;
+use std::fmt::Write as _;
 
 use crate::svg_preview::render_svg;
 
@@ -107,8 +108,6 @@ demonstração de estados; o navegador não executa a máquina de estados Rust a
 })();
 </script></body></html>
 ";
-    use std::fmt::Write as _;
-
     let mut output = String::from(header);
     for (state, svg) in [
         ("collapsed", collapsed),
