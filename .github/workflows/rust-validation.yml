@@ -1,0 +1,44 @@
+name: ARANDU Core — Rust validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rust-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust-validation:
+    name: Rust checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install Rust 1.91 toolchain
+        run: |
+          rustup toolchain install 1.91.0 --profile minimal --component rustfmt --component clippy
+          rustup default 1.91.0
+
+      - name: Rust version
+        run: rustc --version && cargo --version
+
+      - name: Verify formatting
+        run: cargo fmt --all -- --check
+
+      - name: Validate Rust workspace
+        run: cargo check --workspace --locked
+
+      - name: Run unit and integration tests
+        run: cargo test --workspace --locked
+
+      - name: Lint
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
