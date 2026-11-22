@@ -266,3 +266,6 @@ mod tests {
         assert_eq!(river.selected().map(ApplicationId::as_str), Some("b"));
     }
 }
+
+/// Experimental A0 read-only ontology interoperability contracts.
+pub mod ontology_contract;
