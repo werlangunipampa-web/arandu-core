@@ -45,3 +45,6 @@ jobs:
 
       - name: Validate ontology inventory (synthetic fixtures)
         run: python3 -m unittest discover -s tests -p 'test_ontology_inventory.py' -v
+
+      - name: Validate Linux Mint window adapter syntax
+        run: python3 -m py_compile scripts/arandu_window_mint.py
