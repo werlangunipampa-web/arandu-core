@@ -106,6 +106,7 @@ def main() -> int:
     canvas = tk.Canvas(root, bg="#09171a", highlightthickness=0)
     canvas.pack(fill="both", expand=True)
     scene = initial
+    protocol_errors = []
 
     def redraw(_event=None) -> None:
         draw_scene(canvas, scene, max(canvas.winfo_width(), 1),
@@ -114,6 +115,7 @@ def main() -> int:
     def send(command: str) -> None:
         nonlocal scene
         if process.poll() is not None:
+            protocol_errors.append("Rust core exited before input")
             root.title("ARANDU — Núcleo Rust encerrado")
             return
         try:
@@ -122,6 +124,7 @@ def main() -> int:
             scene = decode_frame(process.stdout.readline())
             redraw()
         except (OSError, ValueError, ET.ParseError) as exc:
+            protocol_errors.append(str(exc))
             root.title(f"ARANDU — erro de protocolo: {exc}")
 
     for label, command in [
@@ -171,6 +174,9 @@ def main() -> int:
         root.after(600, close)
     root.mainloop()
     if os.environ.get("ARANDU_GUI_SMOKE") == "1":
+        if protocol_errors:
+            print(f"ARANDU_GUI_SMOKE_FAILED: {protocol_errors}", file=sys.stderr)
+            return 1
         print("ARANDU_GUI_SMOKE_OK", flush=True)
     return 0
 
