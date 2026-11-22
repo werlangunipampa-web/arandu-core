@@ -6,8 +6,7 @@ license.workspace = true
 
 [dependencies]
 arandu-navigation = { path = "../arandu-navigation" }
-
-[dev-dependencies]
+arandu-confluence = { path = "../arandu-confluence" }
 arandu-model = { path = "../arandu-model" }
 
 [lints]
