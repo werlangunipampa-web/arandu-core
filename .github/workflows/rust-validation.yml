@@ -42,3 +42,6 @@ jobs:
 
       - name: Lint
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
+
+      - name: Validate ontology inventory (synthetic fixtures)
+        run: python3 -m unittest discover -s tests -p 'test_ontology_inventory.py' -v
