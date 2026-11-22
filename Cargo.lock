@@ -9,6 +9,7 @@ dependencies = [
  "arandu-confluence",
  "arandu-core",
  "arandu-geometry",
+ "arandu-input-api",
  "arandu-model",
  "arandu-navigation",
  "arandu-render-api",
