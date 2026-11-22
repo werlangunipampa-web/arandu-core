@@ -1,8 +1,8 @@
 mod html_preview;
 mod interaction_demo;
 mod native_input_bridge;
-mod window_protocol;
 mod svg_preview;
+mod window_protocol;
 
 use std::time::Duration;
 
