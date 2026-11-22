@@ -62,3 +62,6 @@ jobs:
 
       - name: Require virtual window smoke for A1.5 and A1.8
         run: bash scripts/testar_tudo.sh --require-gui
+
+      - name: Validate diagnostic Bash syntax (no local-machine access)
+        run: bash -n scripts/diagnostico_desempenho_mint.sh
