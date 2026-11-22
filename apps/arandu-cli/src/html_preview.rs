@@ -6,8 +6,8 @@ use arandu_confluence::ConfluenceSignal;
 use arandu_core::AranduCore;
 use arandu_geometry::{Point, Viewport};
 use arandu_model::{ApplicationId, ApplicationNode};
-use std::time::Duration;
 use std::fmt::Write as _;
+use std::time::Duration;
 
 use crate::svg_preview::render_svg;
 
