@@ -129,34 +129,34 @@ def main() -> int:
     root.title("ARANDU • Confluência — Linux Mint")
     root.geometry("1180x820")
     root.minsize(650, 480)
-    root.configure(bg="#09171a")
+    root.configure(bg="#0b110e")
 
-    header = tk.Frame(root, bg="#102825", height=80)
+    header = tk.Frame(root, bg="#131b14", height=58)
     header.pack(side="top", fill="x")
     header.pack_propagate(False)
-    brand = tk.Frame(header, bg="#102825")
-    brand.pack(side="left", fill="y", padx=28, pady=11)
-    tk.Label(brand, text="ARANDU", fg="#e9f5ec", bg="#102825",
-             font=("Sans", 20, "bold"), anchor="w").pack(anchor="w")
-    tk.Label(brand, text="CONFLUÊNCIA  /  SEMENTE  /  TRÊS RIOS",
-             fg="#8fbaaa", bg="#102825", font=("Sans", 9),
+    brand = tk.Frame(header, bg="#131b14")
+    brand.pack(side="left", fill="y", padx=22, pady=5)
+    tk.Label(brand, text="ARANDU", fg="#f5ead6", bg="#131b14",
+             font=("Sans", 17, "bold"), anchor="w").pack(anchor="w")
+    tk.Label(brand, text="SEMENTE  ·  MEMÓRIA  ·  ABERTOS  ·  FREQUENTES",
+             fg="#b9a77e", bg="#131b14", font=("Sans", 9),
              anchor="w").pack(anchor="w")
-    tk.Label(header, text="LINUX MINT  ·  LABORATÓRIO",
-             bg="#102825", fg="#7da899", font=("Sans", 9),
+    tk.Label(header, text="ARANDU TAPE  ·  LABORATÓRIO RUST",
+             bg="#131b14", fg="#c6a66e", font=("Sans", 9),
              anchor="e").pack(side="right", padx=26)
 
-    bar = tk.Frame(root, bg="#102825", pady=9, padx=19)
+    bar = tk.Frame(root, bg="#131b14", pady=5, padx=14)
     bar.pack(side="top", fill="x")
-    tk.Frame(root, bg="#3e7463", height=2).pack(side="top", fill="x")
-    canvas = tk.Canvas(root, bg="#09171a", highlightthickness=0)
+    tk.Frame(root, bg="#cda158", height=2).pack(side="top", fill="x")
+    canvas = tk.Canvas(root, bg="#0b110e", highlightthickness=0)
     canvas.pack(fill="both", expand=True)
     status = tk.StringVar(value="Iniciando o núcleo Rust…")
-    footer = tk.Frame(root, bg="#102825", pady=9)
+    footer = tk.Frame(root, bg="#131b14", pady=9)
     footer.pack(side="bottom", fill="x")
-    tk.Label(footer, textvariable=status, anchor="w", bg="#102825",
-             fg="#dceee6", font=("Sans", 10)).pack(side="left", padx=20)
+    tk.Label(footer, textvariable=status, anchor="w", bg="#131b14",
+             fg="#e9dcc3", font=("Sans", 10)).pack(side="left", padx=20)
     tk.Label(footer, text="ESC · RECOLHER     ← → · NAVEGAR",
-             bg="#102825", fg="#8fbaaa", font=("Sans", 9)).pack(
+             bg="#131b14", fg="#b9a77e", font=("Sans", 9)).pack(
                  side="right", padx=20)
     bridge = RustBridge()
     latest: ET.Element | None = None
@@ -191,14 +191,14 @@ def main() -> int:
     ]:
         button = tk.Button(
             bar, text=label, command=lambda c=command: send(c),
-            bg="#1b3c34", fg="#edf7f0",
-            activebackground="#457d67", activeforeground="#ffffff",
+            bg="#211b14", fg="#f5ead6",
+            activebackground="#675339", activeforeground="#ffffff",
             relief="flat", bd=0, cursor="hand2",
-            font=("Sans", 10), padx=15, pady=10,
+            font=("Sans", 10), padx=13, pady=7,
         )
         button.pack(side="left", padx=4)
-        button.bind("<Enter>", lambda event, widget=button: widget.configure(bg="#315e4d"))
-        button.bind("<Leave>", lambda event, widget=button: widget.configure(bg="#1b3c34"))
+        button.bind("<Enter>", lambda event, widget=button: widget.configure(bg="#423524"))
+        button.bind("<Leave>", lambda event, widget=button: widget.configure(bg="#211b14"))
 
     def on_key(event) -> None:
         command = COMMANDS.get(event.keysym)
