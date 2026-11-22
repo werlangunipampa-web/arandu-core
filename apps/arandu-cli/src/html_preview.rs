@@ -77,7 +77,7 @@ Nenhum aplicativo real é iniciado. Nenhuma informação da Semente oficial é a
 </nav>
 <p id="status" role="status" aria-live="polite">Estado visual: Semente recolhida</p>
 "#;
-    let footer = r#"<p><small>Teclas: 1, 2, 3 ou Escape para recolher. Esta é uma
+    let footer = r"<p><small>Teclas: 1, 2, 3 ou Escape para recolher. Esta é uma
 demonstração de estados; o navegador não executa a máquina de estados Rust ao vivo.</small></p>
 </main>
 <script>
@@ -106,7 +106,9 @@ demonstração de estados; o navegador não executa a máquina de estados Rust a
   });
 })();
 </script></body></html>
-"#;
+";
+    use std::fmt::Write as _;
+
     let mut output = String::from(header);
     for (state, svg) in [
         ("collapsed", collapsed),
@@ -114,9 +116,10 @@ demonstração de estados; o navegador não executa a máquina de estados Rust a
         ("pinned", pinned),
     ] {
         let active = if state == "collapsed" { " active" } else { "" };
-        output.push_str(&format!(
+        let _ = write!(
+            output,
             "<section class=\"scene{active}\" data-scene=\"{state}\" aria-label=\"Prévia {state}\">\n{svg}</section>\n"
-        ));
+        );
     }
     output.push_str(footer);
     output
