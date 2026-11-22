@@ -59,6 +59,7 @@ jobs:
         run: |
           if command -v xvfb-run >/dev/null 2>&1 && python3 -c 'import tkinter' >/dev/null 2>&1; then
             xvfb-run -a python3 tests/test_mint_gui_smoke.py
+            xvfb-run -a python3 tests/test_mint_async_gui_smoke.py
           else
             echo "SKIP virtual display GUI smoke (xvfb-run or tkinter unavailable)"
           fi
