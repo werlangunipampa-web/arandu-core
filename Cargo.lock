@@ -8,8 +8,10 @@ version = "0.4.2"
 dependencies = [
  "arandu-confluence",
  "arandu-core",
+ "arandu-geometry",
  "arandu-model",
  "arandu-navigation",
+ "arandu-render-api",
 ]
 
 [[package]]
