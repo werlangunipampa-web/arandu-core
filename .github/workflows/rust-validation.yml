@@ -55,11 +55,10 @@ jobs:
       - name: Run unified A1.7 automated checks
         run: bash scripts/testar_tudo.sh --no-gui
 
-      - name: Run optional virtual display GUI smoke
+      - name: Install temporary GUI test dependencies on runner
         run: |
-          if command -v xvfb-run >/dev/null 2>&1 && python3 -c 'import tkinter' >/dev/null 2>&1; then
-            xvfb-run -a python3 tests/test_mint_gui_smoke.py
-            xvfb-run -a python3 tests/test_mint_async_gui_smoke.py
-          else
-            echo "SKIP virtual display GUI smoke (xvfb-run or tkinter unavailable)"
-          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xauth python3-tk
+
+      - name: Require virtual window smoke for A1.5 and A1.8
+        run: bash scripts/testar_tudo.sh --require-gui
