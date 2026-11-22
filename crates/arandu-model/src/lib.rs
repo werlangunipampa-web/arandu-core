@@ -269,3 +269,6 @@ mod tests {
 
 /// Experimental A0 read-only ontology interoperability contracts.
 pub mod ontology_contract;
+
+/// Experimental A0.5 access policy for read-only ontology queries.
+pub mod ontology_access;
