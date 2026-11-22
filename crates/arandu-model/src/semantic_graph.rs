@@ -161,10 +161,16 @@ mod tests {
         let mut graph = graph();
         let mut invalid = statement();
         invalid.object = "unknown".into();
-        assert_eq!(graph.add_statement(invalid), Err(GraphError::UnknownConcept));
+        assert_eq!(
+            graph.add_statement(invalid),
+            Err(GraphError::UnknownConcept)
+        );
         let mut invalid = statement();
         invalid.provenance.source_id.clear();
-        assert_eq!(graph.add_statement(invalid), Err(GraphError::MissingProvenance));
+        assert_eq!(
+            graph.add_statement(invalid),
+            Err(GraphError::MissingProvenance)
+        );
         assert_eq!(graph.statement_count(), 0);
     }
 
