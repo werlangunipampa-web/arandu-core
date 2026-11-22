@@ -272,3 +272,6 @@ pub mod ontology_contract;
 
 /// Experimental A0.5 access policy for read-only ontology queries.
 pub mod ontology_access;
+
+/// A0.8 experimental attributed semantic graph (synthetic data only).
+pub mod semantic_graph;
