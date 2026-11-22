@@ -5,7 +5,7 @@
 
 use arandu_confluence::ConfluenceEvent;
 use arandu_core::AranduCore;
-use arandu_input_api::desktop_keyboard::{DesktopAction, DesktopKey, KeyTransition, map_key};
+use arandu_input_api::desktop_keyboard::{map_key, DesktopAction, DesktopKey, KeyTransition};
 use arandu_navigation::AranduEvent;
 use std::time::Duration;
 
@@ -36,10 +36,8 @@ pub fn dispatch(
         }
         DesktopAction::Navigation(intent) => {
             effects.navigation = core.handle_intent(intent);
-            effects.confluence = core.handle_confluence_signal(
-                arandu_confluence::ConfluenceSignal::Activity,
-                now,
-            );
+            effects.confluence =
+                core.handle_confluence_signal(arandu_confluence::ConfluenceSignal::Activity, now);
         }
     }
     Some(effects)
@@ -124,7 +122,9 @@ mod tests {
             Duration::from_secs(1),
         )
         .expect("mapped input");
-        assert!(effects.navigation.contains(&AranduEvent::RiverChanged(RiverKind::Memory)));
+        assert!(effects
+            .navigation
+            .contains(&AranduEvent::RiverChanged(RiverKind::Memory)));
     }
 
     #[test]
