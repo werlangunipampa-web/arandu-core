@@ -230,6 +230,13 @@ def main() -> int:
             if smoke:
                 close()
                 return
+        if received == 0 and time.monotonic() - started > COMMAND_TIMEOUT:
+            smoke_error = True
+            status.set("Falha: núcleo Rust não enviou a cena inicial")
+            bridge.stop()
+            if smoke:
+                close()
+                return
         if smoke and time.monotonic() - started > 15:
             smoke_error = True
             close()
