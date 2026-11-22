@@ -71,7 +71,7 @@ pub enum GuardedLookupError<E> {
 }
 
 /// Only use this guarded facade at the application boundary.
-/// Do not expose the underlying OntologyReader to untrusted callers.
+/// Do not expose the underlying `OntologyReader` to untrusted callers.
 pub struct GuardedOntologyReader<R, P> {
     reader: R,
     policy: P,
