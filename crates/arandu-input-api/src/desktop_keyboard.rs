@@ -57,15 +57,15 @@ pub fn map_key(key: DesktopKey, transition: KeyTransition) -> Option<DesktopActi
         DesktopKey::ArrowRight | DesktopKey::ArrowDown => {
             Some(DesktopAction::Navigation(NavigationIntent::NextNode))
         }
-        DesktopKey::KeyM => Some(DesktopAction::Navigation(
-            NavigationIntent::SelectRiver(RiverKind::Memory),
-        )),
-        DesktopKey::KeyO => Some(DesktopAction::Navigation(
-            NavigationIntent::SelectRiver(RiverKind::Open),
-        )),
-        DesktopKey::KeyF => Some(DesktopAction::Navigation(
-            NavigationIntent::SelectRiver(RiverKind::Frequent),
-        )),
+        DesktopKey::KeyM => Some(DesktopAction::Navigation(NavigationIntent::SelectRiver(
+            RiverKind::Memory,
+        ))),
+        DesktopKey::KeyO => Some(DesktopAction::Navigation(NavigationIntent::SelectRiver(
+            RiverKind::Open,
+        ))),
+        DesktopKey::KeyF => Some(DesktopAction::Navigation(NavigationIntent::SelectRiver(
+            RiverKind::Frequent,
+        ))),
         DesktopKey::Other => None,
     }
 }
