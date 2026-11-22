@@ -1,0 +1,67 @@
+name: ARANDU Core — Rust validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rust-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust-validation:
+    name: Rust checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install Rust 1.91 toolchain
+        run: |
+          rustup toolchain install 1.91.0 --profile minimal --component rustfmt --component clippy
+          rustup default 1.91.0
+
+      - name: Rust version
+        run: rustc --version && cargo --version
+
+      - name: Verify formatting
+        run: cargo fmt --all -- --check
+
+      - name: Validate Rust workspace
+        run: cargo check --workspace --locked
+
+      - name: Run unit and integration tests
+        run: cargo test --workspace --locked
+
+      - name: Lint
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+
+      - name: Validate ontology inventory (synthetic fixtures)
+        run: python3 -m unittest discover -s tests -p 'test_ontology_inventory.py' -v
+
+      - name: Validate Linux Mint window adapter syntax
+        run: python3 -m py_compile scripts/arandu_window_mint.py
+
+      - name: Validate A1.6 Rust window protocol end-to-end
+        run: python3 scripts/benchmark_window_protocol.py --build --frames 20
+
+      - name: Run unified A1.7 automated checks
+        run: bash scripts/testar_tudo.sh --no-gui
+
+      - name: Install temporary GUI test dependencies on runner
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xauth python3-tk
+
+      - name: Require virtual window smoke for A1.5 and A1.8
+        run: bash scripts/testar_tudo.sh --require-gui
+
+      - name: Validate diagnostic Bash syntax (no local-machine access)
+        run: bash -n scripts/diagnostico_desempenho_mint.sh

@@ -266,3 +266,15 @@ mod tests {
         assert_eq!(river.selected().map(ApplicationId::as_str), Some("b"));
     }
 }
+
+/// Experimental A0 read-only ontology interoperability contracts.
+pub mod ontology_contract;
+
+/// Experimental A0.5 access policy for read-only ontology queries.
+pub mod ontology_access;
+
+/// A0.8 experimental attributed semantic graph (synthetic data only).
+pub mod semantic_graph;
+
+/// A0.9 synthetic, read-only projection for ECA research.
+pub mod eca_projection;

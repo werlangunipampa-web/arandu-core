@@ -149,3 +149,6 @@ mod tests {
         assert_eq!(profile.resolve(&voice, 0.70), profile.resolve(&tone, 0.70));
     }
 }
+
+/// A1.3 portable desktop keyboard adapter, independent of window toolkit.
+pub mod desktop_keyboard;
