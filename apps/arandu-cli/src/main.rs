@@ -1,5 +1,6 @@
 mod html_preview;
 mod interaction_demo;
+mod native_input_bridge;
 mod svg_preview;
 
 use std::time::Duration;
@@ -10,6 +11,10 @@ use arandu_model::{ApplicationId, ApplicationNode, RiverKind};
 use arandu_navigation::NavigationIntent;
 
 fn main() {
+    if std::env::args().any(|arg| arg == "--native-input-demo") {
+        print!("{}", native_input_bridge::demo());
+        return;
+    }
     if std::env::args().any(|arg| arg == "--interactive-core") {
         if let Err(err) = interaction_demo::run(std::io::stdin().lock(), std::io::stdout().lock()) {
             eprintln!("ARANDU A1.2: {err}");
