@@ -46,6 +46,7 @@ step "benchmark" python3 scripts/benchmark_window_protocol.py --frames 100
 if [[ "$GUI_MODE" != off ]]; then
   if command -v xvfb-run >/dev/null 2>&1 && python3 -c 'import tkinter' >/dev/null 2>&1; then
     step "janela_virtual" xvfb-run -a python3 tests/test_mint_gui_smoke.py
+    step "janela_async_virtual" xvfb-run -a python3 tests/test_mint_async_gui_smoke.py
   elif [[ "$GUI_MODE" == require ]]; then
     echo "ERRO: --require-gui requer xvfb-run e Python tkinter." >&2
     exit 1
