@@ -29,10 +29,10 @@ df -h / 2>/dev/null || true
 swapon --show --noheadings --bytes 2>/dev/null | awk '{sum+=$3; used+=$4} END {printf "Swap bytes: total=%0.f usada=%0.f\n",sum,used}'
 echo
 echo "== Processos com maior CPU (sem argumentos privados) =="
-ps -eo pid,comm,%cpu,%mem,rss,etime --sort=-%cpu | head -n 16
+ps -eo pid,comm,%cpu,%mem,rss,etime --sort=-%cpu | head -n 16 || true
 echo
 echo "== Processos com maior RAM (sem argumentos privados) =="
-ps -eo pid,comm,%cpu,%mem,rss,etime --sort=-rss | head -n 16
+ps -eo pid,comm,%cpu,%mem,rss,etime --sort=-rss | head -n 16 || true
 echo
 echo "== Processos ARANDU (nome, uso e tempo) =="
 ps -eo pid,comm,%cpu,%mem,rss,etime | grep -Ei 'arandu|python3|cinnamon' | head -n 30 || true
