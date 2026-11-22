@@ -51,3 +51,14 @@ jobs:
 
       - name: Validate A1.6 Rust window protocol end-to-end
         run: python3 scripts/benchmark_window_protocol.py --build --frames 20
+
+      - name: Run unified A1.7 automated checks
+        run: bash scripts/testar_tudo.sh --no-gui
+
+      - name: Run optional virtual display GUI smoke
+        run: |
+          if command -v xvfb-run >/dev/null 2>&1 && python3 -c 'import tkinter' >/dev/null 2>&1; then
+            xvfb-run -a python3 tests/test_mint_gui_smoke.py
+          else
+            echo "SKIP virtual display GUI smoke (xvfb-run or tkinter unavailable)"
+          fi
