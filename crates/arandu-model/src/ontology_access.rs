@@ -117,10 +117,7 @@ mod tests {
     impl OntologyReader for SyntheticReader {
         type Error = &'static str;
 
-        fn lookup(
-            &self,
-            query: &OntologyQuery,
-        ) -> Result<Vec<KnowledgeReference>, Self::Error> {
+        fn lookup(&self, query: &OntologyQuery) -> Result<Vec<KnowledgeReference>, Self::Error> {
             self.calls.set(self.calls.get() + 1);
             Ok(vec![KnowledgeReference {
                 concept_id: query.concept_id.clone(),
@@ -154,7 +151,9 @@ mod tests {
     #[test]
     fn default_policy_denies_without_consulting_backend() {
         let guarded = GuardedOntologyReader::new(
-            SyntheticReader { calls: Cell::new(0) },
+            SyntheticReader {
+                calls: Cell::new(0),
+            },
             ExplicitGrantPolicy::default(),
         );
         let result = guarded.lookup(&request(
@@ -169,14 +168,20 @@ mod tests {
     #[test]
     fn explicit_grant_allows_only_matching_subject_purpose_and_concept() {
         let guarded = GuardedOntologyReader::new(
-            SyntheticReader { calls: Cell::new(0) },
+            SyntheticReader {
+                calls: Cell::new(0),
+            },
             ExplicitGrantPolicy::new(vec![grant()]),
         );
 
         for (subject, purpose, concept) in [
             ("other-user", QueryPurpose::LearningResearch, "concept-a"),
             ("synthetic-user", QueryPurpose::UserNavigation, "concept-a"),
-            ("synthetic-user", QueryPurpose::LearningResearch, "concept-b"),
+            (
+                "synthetic-user",
+                QueryPurpose::LearningResearch,
+                "concept-b",
+            ),
             ("", QueryPurpose::LearningResearch, "concept-a"),
             ("synthetic-user", QueryPurpose::LearningResearch, ""),
         ] {
@@ -203,10 +208,7 @@ mod tests {
     impl OntologyReader for FailingReader {
         type Error = &'static str;
 
-        fn lookup(
-            &self,
-            _query: &OntologyQuery,
-        ) -> Result<Vec<KnowledgeReference>, Self::Error> {
+        fn lookup(&self, _query: &OntologyQuery) -> Result<Vec<KnowledgeReference>, Self::Error> {
             Err("synthetic-backend-error")
         }
     }
