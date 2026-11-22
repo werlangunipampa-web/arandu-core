@@ -10,6 +10,8 @@ arandu-core = { path = "../../crates/arandu-core" }
 arandu-model = { path = "../../crates/arandu-model" }
 arandu-navigation = { path = "../../crates/arandu-navigation" }
 arandu-confluence = { path = "../../crates/arandu-confluence" }
+arandu-geometry = { path = "../../crates/arandu-geometry" }
+arandu-render-api = { path = "../../crates/arandu-render-api" }
 
 [lints]
 workspace = true
