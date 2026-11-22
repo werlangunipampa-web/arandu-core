@@ -126,17 +126,38 @@ def main() -> int:
         print(f"Janela gráfica indisponível: {exc}", file=sys.stderr)
         return 2
 
-    root.title("ARANDU A1.8 — Linux Mint (janela responsiva)")
-    root.geometry("1100x780")
-    root.minsize(550, 420)
+    root.title("ARANDU • Confluência — Linux Mint")
+    root.geometry("1180x820")
+    root.minsize(650, 480)
     root.configure(bg="#09171a")
-    bar = tk.Frame(root, bg="#102e2d")
+
+    header = tk.Frame(root, bg="#102825", height=80)
+    header.pack(side="top", fill="x")
+    header.pack_propagate(False)
+    brand = tk.Frame(header, bg="#102825")
+    brand.pack(side="left", fill="y", padx=28, pady=11)
+    tk.Label(brand, text="ARANDU", fg="#e9f5ec", bg="#102825",
+             font=("Sans", 20, "bold"), anchor="w").pack(anchor="w")
+    tk.Label(brand, text="CONFLUÊNCIA  /  SEMENTE  /  TRÊS RIOS",
+             fg="#8fbaaa", bg="#102825", font=("Sans", 9),
+             anchor="w").pack(anchor="w")
+    tk.Label(header, text="LINUX MINT  ·  LABORATÓRIO",
+             bg="#102825", fg="#7da899", font=("Sans", 9),
+             anchor="e").pack(side="right", padx=26)
+
+    bar = tk.Frame(root, bg="#102825", pady=9, padx=19)
     bar.pack(side="top", fill="x")
+    tk.Frame(root, bg="#3e7463", height=2).pack(side="top", fill="x")
     canvas = tk.Canvas(root, bg="#09171a", highlightthickness=0)
     canvas.pack(fill="both", expand=True)
-    status = tk.StringVar(value="Inicializando núcleo Rust…")
-    tk.Label(root, textvariable=status, anchor="w", bg="#102e2d",
-             fg="#dceee6").pack(side="bottom", fill="x")
+    status = tk.StringVar(value="Iniciando o núcleo Rust…")
+    footer = tk.Frame(root, bg="#102825", pady=9)
+    footer.pack(side="bottom", fill="x")
+    tk.Label(footer, textvariable=status, anchor="w", bg="#102825",
+             fg="#dceee6", font=("Sans", 10)).pack(side="left", padx=20)
+    tk.Label(footer, text="ESC · RECOLHER     ← → · NAVEGAR",
+             bg="#102825", fg="#8fbaaa", font=("Sans", 9)).pack(
+                 side="right", padx=20)
     bridge = RustBridge()
     latest: ET.Element | None = None
     pending_since = time.monotonic()
@@ -168,12 +189,16 @@ def main() -> int:
         ("3 · Fixar", "3"), ("M · Memória", "m"),
         ("O · Abertos", "o"), ("F · Frequentes", "f"),
     ]:
-        tk.Button(
+        button = tk.Button(
             bar, text=label, command=lambda c=command: send(c),
-            bg="#15372e", fg="#f1f8f5",
-            activebackground="#386957", activeforeground="#ffffff",
-            relief="flat", padx=9, pady=8,
-        ).pack(side="left", padx=2)
+            bg="#1b3c34", fg="#edf7f0",
+            activebackground="#457d67", activeforeground="#ffffff",
+            relief="flat", bd=0, cursor="hand2",
+            font=("Sans", 10), padx=15, pady=10,
+        )
+        button.pack(side="left", padx=4)
+        button.bind("<Enter>", lambda event, widget=button: widget.configure(bg="#315e4d"))
+        button.bind("<Leave>", lambda event, widget=button: widget.configure(bg="#1b3c34"))
 
     def on_key(event) -> None:
         command = COMMANDS.get(event.keysym)
