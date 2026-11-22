@@ -1,3 +1,5 @@
+mod svg_preview;
+
 use std::time::Duration;
 
 use arandu_confluence::ConfluenceSignal;
@@ -6,6 +8,10 @@ use arandu_model::{ApplicationId, ApplicationNode, RiverKind};
 use arandu_navigation::NavigationIntent;
 
 fn main() {
+    if std::env::args().any(|arg| arg == "--preview-svg") {
+        print!("{}", svg_preview::preview());
+        return;
+    }
     let mut core = AranduCore::default();
 
     for (id, name) in [
