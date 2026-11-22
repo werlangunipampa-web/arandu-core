@@ -38,8 +38,8 @@ step "cargo_check" cargo check --workspace --locked
 step "cargo_test" cargo test --workspace --locked
 step "clippy" cargo clippy --workspace --all-targets --locked -- -D warnings
 step "python_syntax" python3 -c 'import ast,pathlib; files=sorted(pathlib.Path("scripts").glob("*.py"))+sorted(pathlib.Path("tests").glob("*.py")); [ast.parse(p.read_text(encoding="utf8"), filename=str(p)) for p in files]; print(f"Python sintaxe OK: {len(files)} arquivos")'
-step "python_unit" python3 -m unittest discover -s tests -p 'test_*.py' -v
 step "cargo_build_cli" cargo build --locked -p arandu-cli
+step "python_unit" python3 -m unittest discover -s tests -p 'test_*.py' -v
 step "preview_protocol" python3 tests/test_visual_smoke.py
 step "benchmark" python3 scripts/benchmark_window_protocol.py --frames 100
 
