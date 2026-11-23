@@ -12,6 +12,7 @@ dependencies = [
  "arandu-input-api",
  "arandu-model",
  "arandu-navigation",
+ "arandu-platform-api",
  "arandu-render-api",
 ]
 
