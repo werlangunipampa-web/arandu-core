@@ -1,3 +1,5 @@
+pub mod espacos_vivos;
+
 use std::collections::HashMap;
 use std::time::{Duration, SystemTime};
 
