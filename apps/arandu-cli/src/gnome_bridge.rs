@@ -10,7 +10,7 @@ use arandu_core::AranduCore;
 use arandu_model::RiverKind;
 use arandu_platform_api::gnome_snapshot::GnomeSnapshotAdapter;
 
-const MAX_INPUT_BYTES: u64 = 32_768;
+const MAX_INPUT_BYTES: usize = 32_768;
 
 /// Synchronizes an explicitly requested app-ID snapshot with the real core.
 ///
@@ -20,8 +20,9 @@ const MAX_INPUT_BYTES: u64 = 32_768;
 /// cannot be processed/output.
 pub fn run<R: Read, W: Write>(input: R, mut output: W) -> io::Result<()> {
     let mut raw = String::new();
-    input.take(MAX_INPUT_BYTES + 1).read_to_string(&mut raw)?;
-    if raw.len() as u64 > MAX_INPUT_BYTES {
+    let bound = u64::try_from(MAX_INPUT_BYTES + 1).unwrap_or(u64::MAX);
+    input.take(bound).read_to_string(&mut raw)?;
+    if raw.len() > MAX_INPUT_BYTES {
         return Err(io::Error::new(
             io::ErrorKind::InvalidData,
             "GNOME: entrada excede limite de segurança",
