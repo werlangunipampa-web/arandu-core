@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - a2/gnome-foundation
+  pull_request:
+    branches:
+      - a0/validacao-rust-ci
   workflow_dispatch:
 
 permissions:
