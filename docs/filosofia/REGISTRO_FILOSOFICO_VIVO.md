@@ -62,3 +62,9 @@ A retirada futura dos controles tradicionais de janela depende de um gesto de **
 ## Decisão fundamental — ARANDU sem barras
 
 A organização tradicional por barra superior ou dock deixa de ser paradigma do ARANDU. A apresentação principal será Semente/Opy/Rios por intenção, com possibilidade de guardar a própria Semente e deixar toda a área de trabalho livre. O GNOME permanece infraestrutura, não modelo obrigatório de navegação. Indicadores de privacidade e resgate por teclado são exceções funcionais imprescindíveis. A ocultação definitiva só será ativada após equivalência real de controles e testes de segurança. Ver ADR A8.7.
+
+## Matriz de Migração — referência GNOME 46
+
+- [Plano Diretor — Substituição funcional GNOME → ARANDU (69 itens)](../arquitetura/PLANO_DIRETOR_SUBSTITUICAO_GNOME_69_FUNCOES.md)
+
+A maturidade do ARANDU não se mede pelo número de pacotes GNOME removidos: mede-se pela **paridade funcional e assistiva** de suas interfaces, pelo controle do usuário, pela verificabilidade do rollback e pelo desempenho da sessão inteira. O Rust deve controlar a ontologia e a navegação progressivamente; serviços Linux padronizados devem continuar interoperáveis. Inventário genérico: 69 funções/componentes; auditoria local ainda pendente, sem alegação de desempenho superior antes de medição.
