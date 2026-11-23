@@ -32,6 +32,8 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 - [Revisão A8.2 — tocar aplicativos, relógio e áreas de trabalho](../design/ADR_A8_2_TOQUE_TEMPO_AREAS.md)
 - [Revisão A8.3 — Rios discretos e ações dos Espaços Vivos](../design/ADR_A8_3_RIOS_DISCRETOS_ESPACOS_VIVOS.md)
 - [Revisão A8.5 — a janela real flui para a Semente](../design/ADR_A85_JANELA_FLUI_PARA_SEMENTE.md)
+- [Revisão A8.6 — Rios, atalhos e Semente recolhida](../design/ADR_A86_RIOS_SEMENTE_RECOLHIDA_ATALHOS.md)
+- [Revisão A8.7 — ARANDU sem barras](../design/ADR_A87_ARANDU_SEM_BARRAS.md)
 
 ## Decisões registradas
 
@@ -56,3 +58,7 @@ Cultura e aprendizado devem ser traduzidos em interações coerentes e verificá
 ## Complemento — A8.5
 
 A retirada futura dos controles tradicionais de janela depende de um gesto de **arrastar a janela real** para a zona de acolhimento da Semente, não de arrastar um cartão na Opy. O primeiro piloto será somente observacional. Encerrar exige ação inequívoca, com teclado e fallback mantidos. Ver ADR A8.5.
+
+## Decisão fundamental — ARANDU sem barras
+
+A organização tradicional por barra superior ou dock deixa de ser paradigma do ARANDU. A apresentação principal será Semente/Opy/Rios por intenção, com possibilidade de guardar a própria Semente e deixar toda a área de trabalho livre. O GNOME permanece infraestrutura, não modelo obrigatório de navegação. Indicadores de privacidade e resgate por teclado são exceções funcionais imprescindíveis. A ocultação definitiva só será ativada após equivalência real de controles e testes de segurança. Ver ADR A8.7.
