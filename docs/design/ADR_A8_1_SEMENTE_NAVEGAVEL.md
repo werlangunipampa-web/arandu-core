@@ -1,6 +1,6 @@
 # ADR A8.1 — Semente legível, navegação não bloqueante e energia acessível
 
-**23/11/2026 · status: decisão de projeto proposta após retorno de uso real · ainda não implementada**
+**23/11/2026 · status: protótipo A8.1 codificado e testado localmente; ainda não validado no GNOME real e não incorporado à linha principal**
 
 ## Contexto e evidências
 
@@ -77,3 +77,7 @@ Valores são hipótese de design e precisam ser validados com escala DPI, área 
 - [Semente Adaptativa](../arquitetura/SEMENTE_ADAPTATIVA.md)
 
 **Decisão-síntese:** a Semente deve ser menor que um painel de controle, não menor que a capacidade humana de perceber, compreender e agir.
+
+## Implementação experimental preparada em 23/11/2026
+
+A primeira implementação local da A8.1 foi gerada a partir do código real da A8: instalador reversível `arandu_a81_semente_navegavel.py` e componentes `extension.js`, `opy-placement.js`, `stylesheet.css`. A versão de ensaio traz uma Opy não modal ao clicar no centro, pesquisa textual de aplicativos, Rio Abertos via ponte Rust A5, microícones de Sistema maiores, Energia/Sessão com confirmação GNOME e recolhimento da sobreposição visual histórica via comando D-Bus explícito `seed:collapse`. Rios Memória e Frequentes ainda não têm dados reais no Rust. **Testes de contrato, sintaxe e geometria passaram; não há teste da interface executada na máquina do usuário.** Os arquivos gerados estão disponíveis na conversa como artefatos locais; **o código da A8.1 ainda não foi enviado ao repositório**. É proibido representar a A8.1 como instalada, validada no hardware ou mesclada ao ramo principal antes de evidência real.
