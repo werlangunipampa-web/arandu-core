@@ -68,3 +68,9 @@ A organização tradicional por barra superior ou dock deixa de ser paradigma do
 - [Plano Diretor — Substituição funcional GNOME → ARANDU (69 itens)](../arquitetura/PLANO_DIRETOR_SUBSTITUICAO_GNOME_69_FUNCOES.md)
 
 A maturidade do ARANDU não se mede pelo número de pacotes GNOME removidos: mede-se pela **paridade funcional e assistiva** de suas interfaces, pelo controle do usuário, pela verificabilidade do rollback e pelo desempenho da sessão inteira. O Rust deve controlar a ontologia e a navegação progressivamente; serviços Linux padronizados devem continuar interoperáveis. Inventário genérico: 69 funções/componentes; auditoria local ainda pendente, sem alegação de desempenho superior antes de medição.
+
+## Ajuste A8.8.1 — Teclado continua central
+
+- [ADR A8.8.1 — Navegação de medalhões, teclado e teste sem barra](../design/ADR_A881_NAVEGACAO_TECLADO_TRES_RIOS.md)
+
+A navegação histórica `Super+Alt+1/2/3`, `Super+Alt+←/→`, `Super+Alt+Enter` e `Super+Alt+0` precisa atuar nos Rios visíveis **na Opy**, e não em medalhões legados ocultos. O GNOME regular continua como sessão de recuperação; esconder o painel na sessão ARANDU não deve contaminar o modo GNOME. Modo sem barra ainda é piloto reversível até equivalência de indicadores críticos.
