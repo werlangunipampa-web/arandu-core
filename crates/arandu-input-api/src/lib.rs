@@ -152,3 +152,6 @@ mod tests {
 
 /// A1.3 portable desktop keyboard adapter, independent of window toolkit.
 pub mod desktop_keyboard;
+
+/// A2 optional multimodal navigation intentions; no device capture.
+pub mod assistive_profile;

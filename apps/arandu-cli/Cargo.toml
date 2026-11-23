@@ -7,6 +7,7 @@ rust-version.workspace = true
 
 [dependencies]
 arandu-core = { path = "../../crates/arandu-core" }
+arandu-platform-api = { path = "../../crates/arandu-platform-api" }
 arandu-model = { path = "../../crates/arandu-model" }
 arandu-navigation = { path = "../../crates/arandu-navigation" }
 arandu-confluence = { path = "../../crates/arandu-confluence" }
