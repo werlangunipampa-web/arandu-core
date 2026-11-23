@@ -21,6 +21,29 @@ Os testes verificam referências obsoletas, duplicação, múltiplas janelas do 
 
 O CLI fornece `cargo run --locked -p arandu-cli -- --espacos-vivos-demo`, que simula as cinco intenções com dados sintéticos **sem consultar GNOME**.
 
+## Teclas de atalho e acessibilidade — preservação de contrato
+
+A interação por teclado é parte da identidade e não será descartada quando o novo visual ficar pronto. A extensão Confluência já possui atalhos próprios para Rios, deslocamento de seleção, acionador e recuperação da barra. **Não removê-los nem redefinir atalhos globais do GNOME unilateralmente**. Em `arandu-input-api/src/desktop_keyboard.rs` já existem intenções portáveis (Escape, expansão, seleção de Rio e nó); em `assistive_profile.rs` há mapeamentos simbólicos futuros de cabeça, tons, voz e acionador, ainda sem sensores ativos.
+
+Em A8.3 foi acrescentado ao núcleo Rust `WindowShortcut` → `ShortcutRequest`. Trata-se de **mapeamento semântico, não registro real de atalhos no GNOME**:
+
+- Recolher, Retomar, Imersão, Encerrar → a mesma intenção `WindowIntent` da Opy, exigindo janela escolhida;
+- Confluência → pedido de escolher a segunda janela; não tenta inferir alvo pelo ponteiro;
+- Cancelar → sai sem executar ação;
+- Encerrar → passa pelo plano de confirmação, que nunca fecha automaticamente.
+
+### Requisitos para os atalhos reais no adaptador
+
+1. Definir combinações configuráveis com detecção de conflitos GNOME e sem sobrescrever atalhos históricos ARANDU; nenhum atalho reservado por padrão sem teste na máquina.
+2. Toda ação deve ser acessível por mouse **e teclado**, inclusive sem interação por proximidade.
+3. Ter foco visível, sem esconder a seleção ao perder o hover.
+4. Oferecer descrição textual das ações e confirmação segura, especialmente em Encerrar e Energia.
+5. Prever futuro roteamento da **mesma intenção** para leitores de tela, acionadores, voz ativada explicitamente, gestos de cabeça e outros dispositivos; sem escuta/câmera permanentes.
+6. Incluir teclado assistivo, navegação sequencial, tempo de resposta regulável e cancelamento em ensaios de usabilidade.
+7. Medir se funções continuam alcançáveis na mudança de monitor e de área de trabalho.
+
+Não adiar a acessibilidade estrutural para depois do fechamento do projeto: **a integração física e validação assistiva serão progressivas**, mas os contratos e trajetos alternativos começam agora.
+
 ## Adaptação GNOME planejada
 
 A primeira ligação real exigirá:
