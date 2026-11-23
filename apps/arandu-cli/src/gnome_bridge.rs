@@ -66,7 +66,7 @@ mod tests {
     #[test]
     fn rejects_invalid_and_oversized_inputs() {
         assert!(run(Cursor::new(b"../home/secrets\n"), Vec::new()).is_err());
-        let too_big = vec![b'a'; (MAX_INPUT_BYTES + 1) as usize];
+        let too_big = vec![b'a'; MAX_INPUT_BYTES + 1];
         assert!(run(Cursor::new(too_big), Vec::new()).is_err());
     }
 
