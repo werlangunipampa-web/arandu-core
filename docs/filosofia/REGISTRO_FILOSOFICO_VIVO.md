@@ -31,6 +31,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 - [Revisão A8.1 — acessibilidade da Semente e navegação não bloqueante](../design/ADR_A8_1_SEMENTE_NAVEGAVEL.md)
 - [Revisão A8.2 — tocar aplicativos, relógio e áreas de trabalho](../design/ADR_A8_2_TOQUE_TEMPO_AREAS.md)
 - [Revisão A8.3 — Rios discretos e ações dos Espaços Vivos](../design/ADR_A8_3_RIOS_DISCRETOS_ESPACOS_VIVOS.md)
+- [Revisão A8.5 — a janela real flui para a Semente](../design/ADR_A85_JANELA_FLUI_PARA_SEMENTE.md)
 
 ## Decisões registradas
 
@@ -51,3 +52,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 Cultura e aprendizado devem ser traduzidos em interações coerentes e verificáveis. Elementos culturais guarani não serão atribuídos como autênticos sem pesquisa e diálogo adequados. Aprendizagem significativa não se reduz a nomear botões; implica relações claras, progressivas e recuperáveis entre ações.
 
 **Compromisso:** versões futuras deverão atualizar este índice junto com toda decisão que transforme substancialmente a experiência ARANDU.
+
+## Complemento — A8.5
+
+A retirada futura dos controles tradicionais de janela depende de um gesto de **arrastar a janela real** para a zona de acolhimento da Semente, não de arrastar um cartão na Opy. O primeiro piloto será somente observacional. Encerrar exige ação inequívoca, com teclado e fallback mantidos. Ver ADR A8.5.
