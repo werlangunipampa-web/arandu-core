@@ -1,0 +1,35 @@
+name: ARANDU A8.3 — Espaços Vivos Rust
+
+on:
+  push:
+    branches:
+      - a83/rust-espacos-vivos
+  pull_request:
+    branches:
+      - a8/filosofia-espacos-vivos
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rust-espacos-vivos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Rust com rustfmt e clippy
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Testar workspace e contratos de janelas
+        run: cargo test --workspace --locked
+      - name: Verificar formatação (baseline anterior ainda não formatada)
+        continue-on-error: true
+        run: cargo fmt --all -- --check
+      - name: Verificar lints (diagnóstico incremental)
+        continue-on-error: true
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Demonstração de planos sem mutação
+        run: cargo run --locked -p arandu-cli -- --espacos-vivos-demo

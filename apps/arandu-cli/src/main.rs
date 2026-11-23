@@ -1,9 +1,11 @@
+mod espacos_vivos_demo;
 mod gnome_bridge;
 mod html_preview;
 mod interaction_demo;
 mod native_input_bridge;
 mod svg_preview;
 mod window_protocol;
+mod window_intent_bridge;
 
 use std::time::Duration;
 
@@ -13,6 +15,17 @@ use arandu_model::{ApplicationId, ApplicationNode, RiverKind};
 use arandu_navigation::NavigationIntent;
 
 fn main() {
+    if std::env::args().any(|arg| arg == "--window-intent-stdin") {
+        if let Err(err) = window_intent_bridge::run(std::io::stdin().lock(), std::io::stdout().lock()) {
+            eprintln!("ARANDU A8.4: {err}");
+            std::process::exit(2);
+        }
+        return;
+    }
+    if std::env::args().any(|arg| arg == "--espacos-vivos-demo") {
+        print!("{}", espacos_vivos_demo::demo());
+        return;
+    }
     if std::env::args().any(|arg| arg == "--gnome-apps-stdin") {
         if let Err(err) = gnome_bridge::run(std::io::stdin().lock(), std::io::stdout().lock()) {
             eprintln!("ARANDU A2: {err}");
