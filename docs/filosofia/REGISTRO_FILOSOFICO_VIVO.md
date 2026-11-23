@@ -29,6 +29,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 - [Espaços Vivos — janelas como atividades](ARANDU_ESPACOS_VIVOS.md)
 - [Manifesto Visual — identidade e princípios](../design/MANIFESTO_VISUAL_ARANDU.md)
 - [Revisão A8.1 — acessibilidade da Semente e navegação não bloqueante](../design/ADR_A8_1_SEMENTE_NAVEGAVEL.md)
+- [Revisão A8.2 — tocar aplicativos, relógio e áreas de trabalho](../design/ADR_A8_2_TOQUE_TEMPO_AREAS.md)
 
 ## Decisões registradas
 
@@ -39,6 +40,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 | 23/11/2026 | Sistema é uma camada interna da Semente, não quarto Rio | A8 experimental |
 | 23/11/2026 | Janelas passam a ser pensadas como atividades em Espaços Vivos | Contrato sem ações mutantes |
 | 23/11/2026 | A avaliação em uso mostrou Semente pouco legível, controles minúsculos e expansão que dificulta outras interações | Redesenho A8.1 proposto |
+| 23/11/2026 | Centro da Semente deve abrir Aplicativos; relógio deve abrir Tempo/Agenda; Opy deve alternar áreas de trabalho reais | A8.2 codificada e testada localmente, não validada no GNOME real |
 | 23/11/2026 | Desligar e encerrar sessão devem ser localizáveis com facilidade e sempre pedir confirmação nativa | Prioridade para A8.1 |
 | 23/11/2026 | A barra superior só poderá ser ocultada após equivalência funcional real, segurança e testes acessíveis | Regra de promoção |
 
