@@ -31,6 +31,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 - [Revisão A8.1 — acessibilidade da Semente e navegação não bloqueante](../design/ADR_A8_1_SEMENTE_NAVEGAVEL.md)
 - [Revisão A8.2 — tocar aplicativos, relógio e áreas de trabalho](../design/ADR_A8_2_TOQUE_TEMPO_AREAS.md)
 - [Revisão A8.3 — Rios discretos e ações dos Espaços Vivos](../design/ADR_A8_3_RIOS_DISCRETOS_ESPACOS_VIVOS.md)
+- [Revisão A8.4 — janelas reais, Recolher e Retomar](../design/ADR_A8_4_JANELAS_VIVAS.md)
 
 ## Decisões registradas
 
@@ -45,6 +46,7 @@ Nenhum dos documentos deve apresentar um princípio proposto como funcionalidade
 | 23/11/2026 | Desligar e encerrar sessão devem ser localizáveis com facilidade e sempre pedir confirmação nativa | Prioridade para A8.1 |
 | 23/11/2026 | A barra superior só poderá ser ocultada após equivalência funcional real, segurança e testes acessíveis | Regra de promoção |
 | 23/11/2026 | As faixas extensas dos Rios poluem a área de trabalho; os Rios serão perspectivas contextuais na Opy e as ações de janelas formarão Espaços Vivos | ADR A8.3 proposta, sem alteração de código |
+| 23/11/2026 | Recolher e Retomar passam por plano de janela individual no Rust, com executor GNOME limitado e reversível | A8.4 codificada e testada localmente; ainda não validada no desktop |
 
 ## Filosofia não é decoração
 
