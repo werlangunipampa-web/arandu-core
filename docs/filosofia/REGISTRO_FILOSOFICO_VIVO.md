@@ -74,3 +74,9 @@ A maturidade do ARANDU não se mede pelo número de pacotes GNOME removidos: med
 - [ADR A8.8.1 — Navegação de medalhões, teclado e teste sem barra](../design/ADR_A881_NAVEGACAO_TECLADO_TRES_RIOS.md)
 
 A navegação histórica `Super+Alt+1/2/3`, `Super+Alt+←/→`, `Super+Alt+Enter` e `Super+Alt+0` precisa atuar nos Rios visíveis **na Opy**, e não em medalhões legados ocultos. O GNOME regular continua como sessão de recuperação; esconder o painel na sessão ARANDU não deve contaminar o modo GNOME. Modo sem barra ainda é piloto reversível até equivalência de indicadores críticos.
+
+## Evolução A9.0 — O sistema emerge sob demanda
+
+- [ADR A9.0 — Opy Sistema com Rust](../design/ADR_A90_OPY_SISTEMA_RUST.md)
+
+A Opy começa a substituir o menu rápido do GNOME por controles próprios. Um módulo Rust sem dependência da Shell consulta conexão geral e áudio, e aceita apenas comandos locais pré-definidos quando a pessoa os solicita. O ambiente permanece acessível mesmo com a barra oculta em caráter experimental, mas a retirada definitiva aguarda indicadores de privacidade e notificações próprios. **Sem substituição prematura dos serviços Linux NetworkManager/PipeWire.**
