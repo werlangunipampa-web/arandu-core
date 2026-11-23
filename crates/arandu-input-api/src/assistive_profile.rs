@@ -82,6 +82,26 @@ pub fn baseline_profile() -> InteractionProfile {
     profile
 }
 
+/// Resolves one preprocessed assistive signal only when a confidence score
+/// was explicitly supplied and lies within the configured safe range.
+/// Activation is intentionally unavailable in this first baseline.
+#[must_use]
+pub fn resolve_assistive(
+    profile: &InteractionProfile,
+    signal: &crate::InputSignal,
+    minimum_confidence: f32,
+) -> Option<NavigationIntent> {
+    if !minimum_confidence.is_finite() || !(0.0..=1.0).contains(&minimum_confidence) {
+        return None;
+    }
+    let confidence = signal.confidence?;
+    if !confidence.is_finite() || !(minimum_confidence..=1.0).contains(&confidence) {
+        return None;
+    }
+    let intent = profile.resolve(signal, minimum_confidence)?;
+    (intent != NavigationIntent::ActivateNode).then_some(intent)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -109,7 +129,7 @@ mod tests {
                 confidence: Some(0.95),
             };
             assert_eq!(
-                profile.resolve(&signal, 0.70),
+                resolve_assistive(&profile, &signal, 0.70),
                 Some(NavigationIntent::NextNode)
             );
         }
@@ -124,6 +144,19 @@ mod tests {
             confidence: Some(0.45),
         };
         assert_eq!(profile.resolve(&signal, 0.70), None);
+    }
+
+    #[test]
+    fn missing_or_nonfinite_confidence_cannot_trigger_head_navigation() {
+        let profile = baseline_profile();
+        for confidence in [None, Some(f32::NAN), Some(f32::INFINITY), Some(1.1)] {
+            let signal = InputSignal {
+                modality: InputModality::HeadMovement,
+                action: InputAction::HeadGesture(HeadGesture::Right),
+                confidence,
+            };
+            assert_eq!(resolve_assistive(&profile, &signal, 0.70), None);
+        }
     }
 
     #[test]
