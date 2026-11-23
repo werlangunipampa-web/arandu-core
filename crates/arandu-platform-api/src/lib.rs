@@ -1,3 +1,5 @@
+pub mod gnome_snapshot;
+
 use arandu_model::ApplicationNode;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
