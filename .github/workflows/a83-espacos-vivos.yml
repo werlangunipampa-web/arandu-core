@@ -33,3 +33,9 @@ jobs:
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - name: Demonstração de planos sem mutação
         run: cargo run --locked -p arandu-cli -- --espacos-vivos-demo
+      - name: Compilar e testar controlador Sistema ARANDU A9.0
+        run: |
+          rustc --edition=2021 --test tools/a90_sistema/arandu_sistema.rs -o /tmp/a90-system-tests
+          /tmp/a90-system-tests
+          rustc --edition=2021 -C opt-level=2 tools/a90_sistema/arandu_sistema.rs -o /tmp/arandu-sistema
+          /tmp/arandu-sistema status | grep -F 'A90|1'
