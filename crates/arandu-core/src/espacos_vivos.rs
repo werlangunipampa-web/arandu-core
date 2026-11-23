@@ -285,6 +285,41 @@ impl RiverPresentation {
     }
 }
 
+/// Intenções de atalho já normalizadas pela plataforma. Não são keybindings GNOME.
+///
+/// A camada gráfica decide combinações, remapeamento e conflitos com o SO.
+/// A ação requer uma janela explicitamente selecionada, nunca usa título.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum WindowShortcut {
+    Recolher,
+    Retomar,
+    Imersao,
+    Confluencia,
+    Encerrar,
+    Cancelar,
+}
+
+/// Pedido sem efeito colateral; Confluência precisa de segunda janela escolhida.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum ShortcutRequest {
+    Window(WindowIntent),
+    SelectPartner,
+    Cancel,
+}
+
+/// Mantém teclado e futuros acionadores como formas de expressar a mesma intenção.
+#[must_use]
+pub fn map_window_shortcut(shortcut: WindowShortcut) -> ShortcutRequest {
+    match shortcut {
+        WindowShortcut::Recolher => ShortcutRequest::Window(WindowIntent::RecolherAoRio),
+        WindowShortcut::Retomar => ShortcutRequest::Window(WindowIntent::TrazerAoFoco),
+        WindowShortcut::Imersao => ShortcutRequest::Window(WindowIntent::Imersao),
+        WindowShortcut::Confluencia => ShortcutRequest::SelectPartner,
+        WindowShortcut::Encerrar => ShortcutRequest::Window(WindowIntent::Encerrar),
+        WindowShortcut::Cancelar => ShortcutRequest::Cancel,
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -332,6 +367,30 @@ mod tests {
             &intent,
             ConfirmedGesture::Keyboard,
         )
+    }
+
+    #[test]
+    fn shortcuts_reuse_intents_and_never_trigger_without_window_selection() {
+        assert_eq!(
+            map_window_shortcut(WindowShortcut::Recolher),
+            ShortcutRequest::Window(WindowIntent::RecolherAoRio)
+        );
+        assert_eq!(
+            map_window_shortcut(WindowShortcut::Imersao),
+            ShortcutRequest::Window(WindowIntent::Imersao)
+        );
+        assert_eq!(
+            map_window_shortcut(WindowShortcut::Encerrar),
+            ShortcutRequest::Window(WindowIntent::Encerrar)
+        );
+        assert_eq!(
+            map_window_shortcut(WindowShortcut::Confluencia),
+            ShortcutRequest::SelectPartner
+        );
+        assert_eq!(
+            map_window_shortcut(WindowShortcut::Cancelar),
+            ShortcutRequest::Cancel
+        );
     }
 
     #[test]
