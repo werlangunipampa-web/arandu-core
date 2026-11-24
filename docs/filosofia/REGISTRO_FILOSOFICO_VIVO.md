@@ -80,3 +80,9 @@ A navegação histórica `Super+Alt+1/2/3`, `Super+Alt+←/→`, `Super+Alt+Ente
 - [ADR A9.0 — Opy Sistema com Rust](../design/ADR_A90_OPY_SISTEMA_RUST.md)
 
 A Opy começa a substituir o menu rápido do GNOME por controles próprios. Um módulo Rust sem dependência da Shell consulta conexão geral e áudio, e aceita apenas comandos locais pré-definidos quando a pessoa os solicita. O ambiente permanece acessível mesmo com a barra oculta em caráter experimental, mas a retirada definitiva aguarda indicadores de privacidade e notificações próprios. **Sem substituição prematura dos serviços Linux NetworkManager/PipeWire.**
+
+## Ajuste A8.8.2 — Todos os itens devem permanecer alcançáveis
+
+- [ADR A8.8.2 — Rolagem integral dos Três Rios e Aplicativos](../design/ADR_A882_ROLAGEM_TOTAL_RIOS.md)
+
+Uma lista truncada não é Rio: todos os aplicativos e janelas efetivamente disponíveis precisam ser percorríveis por rolagem do mouse/touchpad **e por teclado**, sem transformar a Opy em barra permanente. Paginação progressiva reduz trabalho inicial. A migração continua sujeita a backup íntegro e recuperação rigorosa após falhas de implantação.
