@@ -39,3 +39,11 @@ jobs:
           /tmp/a90-system-tests
           rustc --edition=2021 -C opt-level=2 tools/a90_sistema/arandu_sistema.rs -o /tmp/arandu-sistema
           /tmp/arandu-sistema status | grep -F 'A90|1'
+
+      - name: Compilar e testar controlador Sistema ARANDU A9.1
+        run: |
+          rustc --edition=2021 --test tools/a91_sistema/arandu_sistema.rs -o /tmp/a91-system-tests
+          /tmp/a91-system-tests
+          rustc --edition=2021 -C opt-level=2 -C debuginfo=0 -C strip=symbols tools/a91_sistema/arandu_sistema.rs -o /tmp/arandu-sistema-a91
+          /tmp/arandu-sistema-a91 status | grep -F 'A91|1'
+          test "$(wc -c </tmp/arandu-sistema-a91)" -lt 33554432
