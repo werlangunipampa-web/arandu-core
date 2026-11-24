@@ -1,5 +1,5 @@
 //! ARANDU A9.1 — controle local e consentido de rede e áudio.
-//! Fonte sincronizada com o instalador reversível A9.1; sem dependência GNOME.
+//! Implementação de referência em Rust, funcionalmente alinhada ao instalador A9.1; sem dependência GNOME.
 use std::env;
 use std::process::{Command, Output};
 
